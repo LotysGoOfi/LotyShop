@@ -12,15 +12,18 @@ public interface DAO {
     Company getCompany(String name);
     Company updateCompany(int id,String name);
     Company createCompany(String name);
-    void deleteCompany(int id);
+    boolean deleteCompany(int id);
     List<Company> getAllCompanies();
 
     Product getProduct(int id);
     Product addProduct();
+    Product createProduct(String name);
+    boolean deleteProduct(int id);
     List<Product> getAllProducts();
 
     User getUser(int id);
     User getUser(String email);
-    User addUser(String email, String nickName, String password);
+    User createUser(String email, String nickName, String password);
+    boolean deleteUser(int id);
     List<User> getAllUsers();
 }

@@ -22,7 +22,7 @@ public class ImplementUserRepository implements UserRepository {
 
     @Override
     public User addUser(String email, String nickName, String password) {
-        return dao.addUser(email,nickName,password);
+        return dao.createUser(email,nickName,password);
     }
 
     @Override

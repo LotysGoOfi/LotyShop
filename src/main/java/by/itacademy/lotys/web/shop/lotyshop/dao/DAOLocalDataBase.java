@@ -23,35 +23,16 @@ public class DAOLocalDataBase implements DAO {
     private final static Connection connection = new DBConnection().getConnection();
 
 
-
     @Override
     public Company getCompany(int id) {
         String sql = String.format(Config.SQL_GET_COMPANY_BY_ID, id);
-        try {
-            ResultSet resultSet = connection.createStatement().executeQuery(sql);
-            if (resultSet.next()) {
-                return setCompany(resultSet);
-            } else {
-                return null;
-            }
-        } catch (SQLException exception) {
-            throw new RuntimeException(exception);
-        }
+        return execute(sql,this::setCompany);
     }
 
     @Override
     public Company getCompany(String name) {
         String sql = String.format(Config.SQL_GET_COMPANY_BY_NAME, name);
-        try {
-            ResultSet resultSet = connection.createStatement().executeQuery(sql);
-            if (resultSet.next()) {
-                return setCompany(resultSet);
-            } else {
-                return null;
-            }
-        } catch (SQLException exception) {
-            throw new RuntimeException(exception);
-        }
+        return execute(sql,this::setCompany);
     }
 
     @Override
@@ -81,11 +62,10 @@ public class DAOLocalDataBase implements DAO {
     }
 
     @Override
-    public void deleteCompany(int id) {
+    public boolean deleteCompany(int id) {
         String sql = String.format(Config.SQL_DELETE_COMPANY,id);
         try {
-            connection.createStatement().execute(sql);
-
+            return connection.createStatement().execute(sql);
         } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }
@@ -93,31 +73,15 @@ public class DAOLocalDataBase implements DAO {
 
     @Override
     public List<Company> getAllCompanies() {
-        try {
-            ResultSet resultSet = connection.createStatement().executeQuery(Config.SQL_GET_ALL_COMPANIES);
-            List<Company> products = new ArrayList<>();
-            while (resultSet.next()) {
-                products.add(setCompany(resultSet));
-            }
-            return products;
-        } catch (SQLException exception) {
-            throw new RuntimeException(exception);
-        }
+        List<Company> companies = new ArrayList<>();
+        executeEach(Config.SQL_GET_ALL_COMPANIES,resultSet -> companies.add(setCompany(resultSet)));
+        return companies;
     }
 
     @Override
     public Product getProduct(int id) {
         String sql = String.format(Config.SQL_GET_PRODUCT_BY_ID, id);
-        try {
-            ResultSet resultSet = connection.createStatement().executeQuery(sql);
-            if (resultSet.next()) {
-                return setProduct(resultSet);
-            } else {
-                return null;
-            }
-        } catch (SQLException exception) {
-            throw new RuntimeException(exception);
-        }
+        return execute(sql,this::setProduct);
     }
 
     @Override
@@ -126,17 +90,20 @@ public class DAOLocalDataBase implements DAO {
     }
 
     @Override
+    public Product createProduct(String name) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteProduct(int id) {
+        return false;
+    }
+
+    @Override
     public List<Product> getAllProducts() {
-        try {
-            ResultSet resultSet = connection.createStatement().executeQuery(Config.SQL_GET_ALL_PRODUCT);
-            List<Product> products = new ArrayList<>();
-            while (resultSet.next()) {
-                products.add(setProduct(resultSet));
-            }
-            return products;
-        } catch (SQLException exception) {
-            throw new RuntimeException(exception);
-        }
+        List<Product> products = new ArrayList<>();
+        executeEach(Config.SQL_GET_ALL_PRODUCT,resultSet -> products.add(setProduct(resultSet)));
+        return products;
     }
 
     @Override
@@ -152,7 +119,7 @@ public class DAOLocalDataBase implements DAO {
     }
 
     @Override
-    public User addUser(String email, String nickName, String password) {
+    public User createUser(String email, String nickName, String password) {
         String sql = String.format(Config.SQL_CREATE_USER,email, nickName, password);
         try {
             connection.createStatement().execute(sql);
@@ -163,6 +130,11 @@ public class DAOLocalDataBase implements DAO {
     }
 
     @Override
+    public boolean deleteUser(int id) {
+        return false;
+    }
+
+    @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         executeEach(Config.SQL_GET_ALL_USERS,resultSet -> users.add(setUser(resultSet)));
@@ -170,8 +142,8 @@ public class DAOLocalDataBase implements DAO {
     }
 
     private User setUser(ResultSet resultSet) {
-        try {
 
+        try {
             int id = resultSet.getInt("id");
             UserRole userRole = UserRole.valueOf(resultSet.getString("user_role"));
             String email = resultSet.getString("email");
@@ -186,6 +158,7 @@ public class DAOLocalDataBase implements DAO {
 
     private Product setProduct(ResultSet resultSet) {
         try {
+
             int id = resultSet.getInt("id");
             int price = resultSet.getInt("price");
             int idCompany = resultSet.getInt("id_company");
@@ -195,11 +168,13 @@ public class DAOLocalDataBase implements DAO {
             String description = resultSet.getString("description");
             String url_image = resultSet.getString("url_image");
             Company company = getCompany(idCompany);
+
             return new Product(id,company,price,appraisal,name,value,description,url_image);
         } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }
     }
+
     private Company setCompany(ResultSet resultSet) {
         try {
             int id = resultSet.getInt("id");
