@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 
 @Log
 @WebFilter(urlPatterns = "/administration/*")
@@ -29,15 +30,12 @@ public class AdministrationFilter extends HttpFilter {
         }
 
 
-        switch (user.getUserRole()){
-            case ADMIN:
-                log.info(": admin");
-                chain.doFilter(req,res);
-                break;
-            default:
-                log.info(": user");
-                res.sendRedirect(req.getContextPath()+"/");
-                break;
-        }
+//        if (user.getUserRole() == UserRole.ADMIN) {
+//            log.info(": admin");
+//            chain.doFilter(req, res);
+//        } else {
+//            log.info(": user");
+//            res.sendRedirect(req.getContextPath() + "/");
+//        }
     }
 }

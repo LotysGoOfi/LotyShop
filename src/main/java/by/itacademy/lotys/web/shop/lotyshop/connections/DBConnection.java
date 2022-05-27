@@ -17,7 +17,7 @@ public class DBConnection {
             log.info(": connection DB");
             return DriverManager.getConnection(Config.DB_URL,Config.DB_USERNAME,Config.DB_PASSWORD);
         } catch (SQLException | ClassNotFoundException exception) {
-            throw new RuntimeException(exception);
+            throw new RuntimeException(exception);//todo
         }
     }
 

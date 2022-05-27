@@ -5,23 +5,24 @@ import by.itacademy.lotys.web.shop.lotyshop.repositories.users.ImplementUserRepo
 import by.itacademy.lotys.web.shop.lotyshop.repositories.users.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ImplementUserService implements UserService {
 
     private final UserRepository userRepository = new ImplementUserRepository();
 
     @Override
-    public User getUser(String email) {
+    public Optional<User> getUser(String email) {
         return userRepository.getUser(email);
     }
 
     @Override
-    public User getUser(int id) {
+    public Optional<User> getUser(int id) {
         return userRepository.getUser(id);
     }
 
     @Override
-    public User createUser(String email, String nickName, String password) {
+    public Optional<User> createUser(String email, String nickName, String password) {
         return userRepository.addUser(email,nickName,password);
     }
 
@@ -29,4 +30,6 @@ public class ImplementUserService implements UserService {
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
+
+
 }

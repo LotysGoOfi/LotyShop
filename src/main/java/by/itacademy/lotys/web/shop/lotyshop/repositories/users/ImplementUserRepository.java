@@ -1,32 +1,30 @@
 package by.itacademy.lotys.web.shop.lotyshop.repositories.users;
 
-import by.itacademy.lotys.web.shop.lotyshop.dao.DAO;
-import by.itacademy.lotys.web.shop.lotyshop.dao.DAOLocalDataBase;
 import by.itacademy.lotys.web.shop.lotyshop.entities.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ImplementUserRepository implements UserRepository {
 
-    private final DAO dao = new DAOLocalDataBase();
 
     @Override
-    public User getUser(String email) {
-        return dao.getUser(email);
+    public Optional<User> getUser(String email) {
+        return null;
     }
 
     @Override
-    public User getUser(int id) {
-        return dao.getUser(id);
+    public Optional<User> getUser(int id) {
+        return null;
     }
 
     @Override
-    public User addUser(String email, String nickName, String password) {
-        return dao.createUser(email,nickName,password);
+    public Optional<User> addUser(String email, String nickName, String password) {
+        return null;
     }
 
     @Override
     public List<User> getAllUsers() {
-        return dao.getAllUsers();
+        return null;
     }
 }

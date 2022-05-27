@@ -26,32 +26,57 @@
         </ul>
     </div>
 </nav>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            Name
-        </div>
-        <div class="col">
-            <a class="btn btn-primary" href="<c:url value="/administration/companies/create"/>" role="button">AddCompany</a>
-        </div>
-    </div>
-    <div class="p-3 border bg-light"><span class="placeholder col-12"></span></div>
-    <c:forEach var="company" items="${companies}">
-        <div class="row">
-            <div class="col">
-                    ${company.name}
-            </div>
-            <div class="col">
-                <a class="btn btn-primary" href="<c:url value="/administration/companies/change?id=${company.id}"/>" role="button">Edit</a>
-            </div>
-            <div class="col">
-                <a class="btn btn-primary" href="<c:url value="/administration/companies/delete?id=${company.id}"/>" role="button">Delete</a>
-            </div>
-        </div>
-        <div class="p-3 border bg-light"><span class="placeholder col-12"></span></div>
-    </c:forEach>
 
-</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col"> Name</th>
+        <a class="btn btn-primary" href="<c:url value="/administration/companies/create"/>" role="button">AddCompany</a>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="company" items="${companies}">
+        <tr>
+
+            <td> ${company.name}</td>
+            <td>
+                <a class="btn btn-primary" href="<c:url value="/administration/companies/change?id=${company.id}"/>"
+                   role="button">Edit</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" href="<c:url value="/administration/companies/delete?id=${company.id}"/>"
+                   role="button">Delete</a>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+<%--<div class="container">--%>
+<%--    <div class="row">--%>
+<%--        <div class="col">--%>
+<%--            Name--%>
+<%--        </div>--%>
+<%--        <div class="col">--%>
+<%--            <a class="btn btn-primary" href="<c:url value="/administration/companies/create"/>" role="button">AddCompany</a>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    <div class="p-3 border bg-light"><span class="placeholder col-12"></span></div>--%>
+<%--    <c:forEach var="company" items="${companies}">--%>
+<%--        <div class="row">--%>
+<%--            <div class="col">--%>
+<%--                    ${company.name}--%>
+<%--            </div>--%>
+<%--            <div class="col">--%>
+<%--                <a class="btn btn-primary" href="<c:url value="/administration/companies/change?id=${company.id}"/>" role="button">Edit</a>--%>
+<%--            </div>--%>
+<%--            <div class="col">--%>
+<%--                <a class="btn btn-primary" href="<c:url value="/administration/companies/delete?id=${company.id}"/>" role="button">Delete</a>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div class="p-3 border bg-light"><span class="placeholder col-12"></span></div>--%>
+<%--    </c:forEach>--%>
+
+<%--</div>--%>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

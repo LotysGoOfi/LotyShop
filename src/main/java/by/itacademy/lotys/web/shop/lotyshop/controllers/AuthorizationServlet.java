@@ -1,8 +1,7 @@
-package by.itacademy.lotys.web.shop.lotyshop.controllers.servlets;
+package by.itacademy.lotys.web.shop.lotyshop.controllers;
 
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.User;
-import by.itacademy.lotys.web.shop.lotyshop.entities.enumes.UserRole;
 import by.itacademy.lotys.web.shop.lotyshop.services.users.ImplementUserService;
 import by.itacademy.lotys.web.shop.lotyshop.services.users.UserService;
 import lombok.extern.java.Log;
@@ -21,12 +20,12 @@ import java.util.Objects;
 @WebServlet(urlPatterns = "/authorization")
 public class AuthorizationServlet extends HttpServlet {
 
-    private static final HashMap<UserRole,String> USER_ROLE_STRING_HASH_MAP = new HashMap<>();
-    static {
-        USER_ROLE_STRING_HASH_MAP.put(UserRole.ADMIN,"/administration");
-        USER_ROLE_STRING_HASH_MAP.put(UserRole.DEFAULT,"/");
-        USER_ROLE_STRING_HASH_MAP.put(null,"/");
-    }
+//    private static final HashMap<UserRole,String> USER_ROLE_STRING_HASH_MAP = new HashMap<>();
+//    static {
+//        USER_ROLE_STRING_HASH_MAP.put(UserRole.ADMIN,"/administration");
+//        USER_ROLE_STRING_HASH_MAP.put(UserRole.DEFAULT,"/");
+//        USER_ROLE_STRING_HASH_MAP.put(null,"/");
+//    }
 
     private final UserService userService = new ImplementUserService();
 
@@ -57,6 +56,7 @@ public class AuthorizationServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("userInfo", user);
 
-        resp.sendRedirect(req.getContextPath() + USER_ROLE_STRING_HASH_MAP.get(user.getUserRole()));
+        log.info(" :name = "+ user.getNickName()+ "role = "+ user.getUserRole());
+       // resp.sendRedirect(req.getContextPath() + USER_ROLE_STRING_HASH_MAP.get(user.getUserRole()));
     }
 }

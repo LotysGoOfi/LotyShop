@@ -1,4 +1,4 @@
-package by.itacademy.lotys.web.shop.lotyshop.controllers.servlets.administration.products;
+package by.itacademy.lotys.web.shop.lotyshop.controllers.administration.products;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.Product;
 import by.itacademy.lotys.web.shop.lotyshop.properties.Config;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/administration/products")
-public class AdministrationProductsServlet extends HttpServlet {
+public class ProductsAdministrationServlet extends HttpServlet {
 
     private final ProductService productService = new ImplementProductService();
 

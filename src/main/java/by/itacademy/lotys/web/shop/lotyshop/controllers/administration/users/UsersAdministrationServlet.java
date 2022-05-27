@@ -1,4 +1,4 @@
-package by.itacademy.lotys.web.shop.lotyshop.controllers.servlets.administration.users;
+package by.itacademy.lotys.web.shop.lotyshop.controllers.administration.users;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.User;
 import by.itacademy.lotys.web.shop.lotyshop.properties.Config;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/administration/users")
-public class AdministrationUsersServlet extends HttpServlet {
+public class UsersAdministrationServlet extends HttpServlet {
 
     private final UserService userService = new ImplementUserService();
 

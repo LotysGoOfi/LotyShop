@@ -1,4 +1,4 @@
-package by.itacademy.lotys.web.shop.lotyshop.controllers.servlets;
+package by.itacademy.lotys.web.shop.lotyshop.controllers;
 
 import by.itacademy.lotys.web.shop.lotyshop.services.users.ImplementUserService;
 import by.itacademy.lotys.web.shop.lotyshop.services.users.UserService;

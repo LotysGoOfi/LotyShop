@@ -5,19 +5,20 @@ import by.itacademy.lotys.web.shop.lotyshop.repositories.products.ImplementProdu
 import by.itacademy.lotys.web.shop.lotyshop.repositories.products.ProductRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ImplementProductService implements ProductService {
 
     private final ProductRepository productRepository = new ImplementProductRepository();
 
     @Override
-    public Product getProduct(int id) {
+    public Optional<Product> getProduct(int id) {
         return productRepository.getProduct(id);
     }
 
     @Override
-    public Product addProduct() {
-        return null;
+    public void addProduct(Product product) {
+        productRepository.createProduct(product);
     }
 
     @Override

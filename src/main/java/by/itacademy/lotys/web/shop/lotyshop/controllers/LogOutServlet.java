@@ -1,4 +1,6 @@
-package by.itacademy.lotys.web.shop.lotyshop.controllers.servlets;
+package by.itacademy.lotys.web.shop.lotyshop.controllers;
+
+import lombok.extern.java.Log;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Log
 @WebServlet(urlPatterns = "/logOut")
 public class LogOutServlet extends HttpServlet {
 

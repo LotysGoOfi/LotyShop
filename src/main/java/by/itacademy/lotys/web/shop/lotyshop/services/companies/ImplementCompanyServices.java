@@ -5,6 +5,7 @@ import by.itacademy.lotys.web.shop.lotyshop.repositories.companies.CompanyReposi
 import by.itacademy.lotys.web.shop.lotyshop.repositories.companies.ImplementCompanyRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ImplementCompanyServices implements CompanyServices {
 
@@ -12,23 +13,23 @@ public class ImplementCompanyServices implements CompanyServices {
 
 
     @Override
-    public Company getCompany(int id) {
+    public Optional<Company> getCompany(int id) {
         return companyRepository.getCompany(id);
     }
 
     @Override
-    public Company getCompany(String name) {
+    public Optional<Company> getCompany(String name) {
         return companyRepository.getCompany(name);
     }
 
     @Override
-    public Company updateCompany(int id, String name) {
-        return companyRepository.updateCompany(id,name);
+    public Optional<Company> updateCompany(Company company) {
+        return companyRepository.updateCompany(company);
     }
 
     @Override
-    public Company createCompany(String name) {
-        return companyRepository.createCompany(name);
+    public Optional<Company> createCompany(String name,String urlLogo,List<String> countries) {
+        return companyRepository.createCompany(name,urlLogo,countries);
     }
 
     @Override
