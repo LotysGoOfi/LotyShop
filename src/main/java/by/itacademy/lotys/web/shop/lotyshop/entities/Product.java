@@ -1,22 +1,64 @@
 package by.itacademy.lotys.web.shop.lotyshop.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@ToString
+@Entity
 @Builder
 @AllArgsConstructor
 public class Product {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ToString.Exclude
+    @ManyToOne(targetEntity = Company.class)
+    @JoinColumn(name = "company_id")
     private Company company;
+
     private BigDecimal price;
-    private int appraisal;
     private String name;
     private int value;
     private String description;
-    private String image;
-    private String category;
+
+    @Column(name = "url_image")
+    private String urlImage;
+
+    @ToString.Exclude
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "products_category_products",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<CategoryProduct> categoryProducts = new HashSet<>();
+
+    public Product(){}
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null){
+            return false;
+        }
+        if(obj.getClass()!=this.getClass()){
+            return false;
+        }
+        if(obj == this){
+            return true;
+        }
+        return Objects.equals(this.id,((Product) obj).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

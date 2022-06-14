@@ -19,7 +19,7 @@ public class CompanyDeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        Long id = Long.parseLong(req.getParameter("id"));
         companyServices.deleteCompany(id);
         log.info(":delete company by id ="+id);
         resp.sendRedirect(req.getContextPath()+"/administration/companies");

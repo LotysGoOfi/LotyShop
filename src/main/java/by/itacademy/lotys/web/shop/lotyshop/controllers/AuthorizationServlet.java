@@ -41,7 +41,7 @@ public class AuthorizationServlet extends HttpServlet {
         final String email = req.getParameter("email");
         final String password = req.getParameter("password");
 
-        User user = userService.getUser(email);
+        User user = userService.getUser(email).get();
 
         if (null == user) {
             resp.sendRedirect(req.getContextPath() + "/authorization");

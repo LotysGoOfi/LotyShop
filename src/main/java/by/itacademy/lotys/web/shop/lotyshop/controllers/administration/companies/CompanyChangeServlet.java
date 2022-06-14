@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 
 @Log
@@ -24,17 +23,22 @@ public class CompanyChangeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        Company company = companyServices.getCompany(id);
+        Long id = Long.parseLong(req.getParameter("id"));
+        Company company = companyServices.findById(id).orElse(Company.builder().name("null").build());
         req.setAttribute("company",company);
         req.getRequestDispatcher("/pages/administration/companies/changeCompany.jsp").forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
+        Long id = Long.parseLong(req.getParameter("id"));
         String newName = req.getParameter("newName");
-        Company company = new Company(id, newName, "NET", List.of("NET"));
+
+        Company company = Company.builder()
+                .id(id)
+                .name(newName)
+                .build();
+
         companyServices.updateCompany(company);
         resp.sendRedirect(req.getContextPath()+"/administration/companies");
         log.info(":update company id="+id +" name= "+newName);

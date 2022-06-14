@@ -40,7 +40,7 @@ public class RegistrationServlet extends HttpServlet {
             req.setAttribute("isPasswordMatches",false);
         }
 
-        if(null != userService.getUser(email)){
+        if(userService.getUser(email).isPresent()){
             req.setAttribute("isEmailExist",true);
             log.info(": email already taken! "+userService.getUser(email));
             req.getRequestDispatcher("/pages/registration.jsp").forward(req,resp);

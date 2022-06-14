@@ -13,8 +13,8 @@ public class ImplementCompanyServices implements CompanyServices {
 
 
     @Override
-    public Optional<Company> getCompany(int id) {
-        return companyRepository.getCompany(id);
+    public Optional<Company> findById(Long id) {
+        return companyRepository.findById(id);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ImplementCompanyServices implements CompanyServices {
     }
 
     @Override
-    public void deleteCompany(int id) {
+    public void deleteCompany(Long id) {
         companyRepository.deleteCompany(id);
     }
 

@@ -1,11 +1,12 @@
 package by.itacademy.lotys.web.shop.lotyshop.entities;
 
-import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Objects;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -13,24 +14,19 @@ import java.util.Objects;
 @Entity
 @Builder
 @AllArgsConstructor
-@Table(name = "users")
-public class User {
+@Table(name = "cities")
+public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "user_role")
-    private UserRole userRole;
-    private String email;
+    @ToString.Exclude
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "cities")
+    private Set<Company> companies = new HashSet<>();
 
-    @Column(name = "nick_name")
-    private String nickName;
-    private String password;
-
-    public User(){
-    }
+    public City(){}
 
     @Override
     public boolean equals(Object obj) {
@@ -43,7 +39,7 @@ public class User {
         if(obj == this){
             return true;
         }
-        return Objects.equals(this.id,((User) obj).id);
+        return Objects.equals(this.id,((City) obj).id);
     }
 
     @Override

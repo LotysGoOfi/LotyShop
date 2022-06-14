@@ -1,36 +1,33 @@
 package by.itacademy.lotys.web.shop.lotyshop.entities;
 
-import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
-
+import java.util.Set;
 
 @Getter
 @Setter
 @ToString
-@Entity
-@Builder
 @AllArgsConstructor
-@Table(name = "users")
-public class User {
+@Entity
+@Table(name = "product_categories")
+public class CategoryProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
+    private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "user_role")
-    private UserRole userRole;
-    private String email;
-
-    @Column(name = "nick_name")
-    private String nickName;
-    private String password;
-
-    public User(){
-    }
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "categoryProducts")
+    private Set<Product> products = new HashSet<>();
+    public CategoryProduct(){}
 
     @Override
     public boolean equals(Object obj) {
@@ -43,7 +40,7 @@ public class User {
         if(obj == this){
             return true;
         }
-        return Objects.equals(this.id,((User) obj).id);
+        return Objects.equals(this.id,((CategoryProduct) obj).id);
     }
 
     @Override
