@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @Log
 @WebServlet(urlPatterns = "/administration/companies/create")
@@ -27,8 +26,8 @@ public class CompanyCreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String newName = req.getParameter("newName");
-        Company company = companyServices.createCompany(newName,"logo", List.of("qwe")).orElse(Company.builder().name("null").build());
+        companyServices.createCompany(Company.builder().name("qwe").build());
         resp.sendRedirect(req.getContextPath()+"/administration/companies");
-        log.info(":create company id="+company.getId() +" name= "+newName);
+        log.info(":create company id="+" name= "+newName);
     }
 }

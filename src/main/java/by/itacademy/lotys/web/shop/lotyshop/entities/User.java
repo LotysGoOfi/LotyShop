@@ -6,7 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Objects;
 
-
 @Getter
 @Setter
 @ToString
@@ -23,10 +22,13 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "user_role")
     private UserRole userRole;
+
+    @Column(unique = true)
     private String email;
 
     @Column(name = "nick_name")
     private String nickName;
+
     private String password;
 
     public User(){

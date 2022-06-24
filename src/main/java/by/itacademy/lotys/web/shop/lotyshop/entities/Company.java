@@ -28,8 +28,9 @@ public class Company {
     private String urlLogo;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "company")
-    private Set<Product> products;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "company_id")
+    private Set<Product> products = new HashSet<>();
 
     @ToString.Exclude
     @ManyToMany(cascade = CascadeType.PERSIST)

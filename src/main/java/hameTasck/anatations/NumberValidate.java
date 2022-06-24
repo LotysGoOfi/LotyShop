@@ -1,4 +1,4 @@
-package by.itacademy.lotys.web.shop.lotyshop.anatations;
+package hameTasck.anatations;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
