@@ -1,8 +1,7 @@
-package by.itacademy.lotys.web.shop.lotyshop.repositories.productCategory;
+package by.itacademy.lotys.web.shop.lotyshop.repositories.categoryProduct;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.CategoryProduct;
-import by.itacademy.lotys.web.shop.lotyshop.entities.Product;
-import by.itacademy.lotys.web.shop.lotyshop.repositories.InterfaceRepository;
+import by.itacademy.lotys.web.shop.lotyshop.repositories.Repository;
 import by.itacademy.lotys.web.shop.lotyshop.util.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class CategoryProductRepository implements InterfaceRepository<CategoryProduct> {
+public class ImplementCategoryProductRepository implements CategoryProductRepository{
 
     private final EntityManager entityManager = JPAUtil.getEntityManager();
 

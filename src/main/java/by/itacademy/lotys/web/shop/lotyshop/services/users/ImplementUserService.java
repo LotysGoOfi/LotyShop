@@ -9,26 +9,28 @@ import java.util.Optional;
 public class ImplementUserService implements UserService {
 
 
-
     @Override
-    public Optional<User> getUser(String email) {
-        return null;
+    public Optional<User> findById(Long id) {
+        return Optional.empty();
     }
 
     @Override
-    public Optional<User> getUser(int id) {
-        return null;
+    public Optional<User> update(User entity) {
+        return Optional.empty();
     }
 
     @Override
-    public Optional<User> createUser(String email, String nickName, String password) {
-        return null;
+    public void create(User entity) {
+
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return null;
+    public void delete(Long id) {
+
     }
 
-
+    @Override
+    public List<User> getAll() {
+        return null;
+    }
 }

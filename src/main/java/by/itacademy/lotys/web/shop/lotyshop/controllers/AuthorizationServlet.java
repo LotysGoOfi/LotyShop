@@ -13,20 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Objects;
 
 @Log
 @WebServlet(urlPatterns = "/authorization")
 public class AuthorizationServlet extends HttpServlet {
 
-//    private static final HashMap<UserRole,String> USER_ROLE_STRING_HASH_MAP = new HashMap<>();
-//    static {
-//        USER_ROLE_STRING_HASH_MAP.put(UserRole.ADMIN,"/administration");
-//        USER_ROLE_STRING_HASH_MAP.put(UserRole.DEFAULT,"/");
-//        USER_ROLE_STRING_HASH_MAP.put(null,"/");
-//    }
-
+    
     private final UserService userService = new ImplementUserService();
 
 
@@ -41,7 +34,7 @@ public class AuthorizationServlet extends HttpServlet {
         final String email = req.getParameter("email");
         final String password = req.getParameter("password");
 
-        User user = userService.getUser(email).get();
+        User user = new User();
 
         if (null == user) {
             resp.sendRedirect(req.getContextPath() + "/authorization");
@@ -57,6 +50,6 @@ public class AuthorizationServlet extends HttpServlet {
         session.setAttribute("userInfo", user);
 
         log.info(" :name = "+ user.getNickName()+ "role = "+ user.getUserRole());
-       // resp.sendRedirect(req.getContextPath() + USER_ROLE_STRING_HASH_MAP.get(user.getUserRole()));
+
     }
 }

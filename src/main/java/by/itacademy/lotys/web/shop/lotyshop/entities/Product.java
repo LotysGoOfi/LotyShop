@@ -15,6 +15,7 @@ import java.util.Set;
 @Entity
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @Id
@@ -41,7 +42,6 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<CategoryProduct> categoryProducts = new HashSet<>();
 
-    public Product(){}
 
     @Override
     public boolean equals(Object obj) {

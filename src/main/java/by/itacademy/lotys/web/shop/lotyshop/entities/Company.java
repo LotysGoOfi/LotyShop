@@ -15,6 +15,7 @@ import java.util.Set;
 @Entity
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "companies")
 public class Company {
 
@@ -27,10 +28,12 @@ public class Company {
     @Column(name = "url_Logo")
     private String urlLogo;
 
+
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "company_id")
     private Set<Product> products = new HashSet<>();
+
 
     @ToString.Exclude
     @ManyToMany(cascade = CascadeType.PERSIST)
@@ -39,8 +42,7 @@ public class Company {
             inverseJoinColumns = @JoinColumn(name = "city_id"))
     private Set<City> cities = new HashSet<>();
 
-    public Company(){
-    }
+
 
     @Override
     public int hashCode() {

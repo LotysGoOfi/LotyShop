@@ -1,6 +1,6 @@
 package by.itacademy.lotys.web.shop.lotyshop.controllers.administration.companies;
 
-import by.itacademy.lotys.web.shop.lotyshop.services.companies.CompanyServices;
+import by.itacademy.lotys.web.shop.lotyshop.services.companies.CompanyService;
 import by.itacademy.lotys.web.shop.lotyshop.services.companies.ImplementCompanyServices;
 import lombok.extern.java.Log;
 
@@ -15,12 +15,12 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/administration/companies/delete")
 public class CompanyDeleteServlet extends HttpServlet {
 
-    private final CompanyServices companyServices = new ImplementCompanyServices();
+    private final CompanyService companyServices = new ImplementCompanyServices();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.parseLong(req.getParameter("id"));
-        companyServices.deleteCompany(id);
+        companyServices.delete(id);
         log.info(":delete company by id ="+id);
         resp.sendRedirect(req.getContextPath()+"/administration/companies");
     }

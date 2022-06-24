@@ -12,6 +12,7 @@ import java.util.Objects;
 @Entity
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "users")
 public class User {
 
@@ -31,8 +32,7 @@ public class User {
 
     private String password;
 
-    public User(){
-    }
+
 
     @Override
     public boolean equals(Object obj) {

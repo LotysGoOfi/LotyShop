@@ -2,7 +2,7 @@ package by.itacademy.lotys.web.shop.lotyshop.controllers.administration.companie
 
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.Company;
-import by.itacademy.lotys.web.shop.lotyshop.services.companies.CompanyServices;
+import by.itacademy.lotys.web.shop.lotyshop.services.companies.CompanyService;
 import by.itacademy.lotys.web.shop.lotyshop.services.companies.ImplementCompanyServices;
 import lombok.extern.java.Log;
 
@@ -18,7 +18,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/administration/companies/change")
 public class CompanyChangeServlet extends HttpServlet {
 
-    private final CompanyServices companyServices = new ImplementCompanyServices();
+    private final CompanyService companyServices = new ImplementCompanyServices();
 
 
     @Override
@@ -39,7 +39,7 @@ public class CompanyChangeServlet extends HttpServlet {
                 .name(newName)
                 .build();
 
-        companyServices.updateCompany(company);
+        companyServices.update(company);
         resp.sendRedirect(req.getContextPath()+"/administration/companies");
         log.info(":update company id="+id +" name= "+newName);
     }

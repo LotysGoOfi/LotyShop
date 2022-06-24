@@ -1,7 +1,7 @@
 package by.itacademy.lotys.web.shop.lotyshop.controllers.administration.companies;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.Company;
-import by.itacademy.lotys.web.shop.lotyshop.services.companies.CompanyServices;
+import by.itacademy.lotys.web.shop.lotyshop.services.companies.CompanyService;
 import by.itacademy.lotys.web.shop.lotyshop.services.companies.ImplementCompanyServices;
 import lombok.extern.java.Log;
 
@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/administration/companies/create")
 public class CompanyCreateServlet extends HttpServlet {
 
-    private final CompanyServices companyServices = new ImplementCompanyServices();
+    private final CompanyService companyServices = new ImplementCompanyServices();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class CompanyCreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String newName = req.getParameter("newName");
-        companyServices.createCompany(Company.builder().name("qwe").build());
+        companyServices.create(Company.builder().name("qwe").build());
         resp.sendRedirect(req.getContextPath()+"/administration/companies");
         log.info(":create company id="+" name= "+newName);
     }

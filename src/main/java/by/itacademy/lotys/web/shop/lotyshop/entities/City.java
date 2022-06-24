@@ -14,6 +14,7 @@ import java.util.Set;
 @Entity
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "cities")
 public class City {
 
@@ -26,7 +27,6 @@ public class City {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "cities")
     private Set<Company> companies = new HashSet<>();
 
-    public City(){}
 
     @Override
     public boolean equals(Object obj) {

@@ -1,16 +1,15 @@
 package by.itacademy.lotys.web.shop.lotyshop.services.companies;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.Company;
-import by.itacademy.lotys.web.shop.lotyshop.repositories.InterfaceRepository;
-import by.itacademy.lotys.web.shop.lotyshop.repositories.company.CompanyRepository;
+import by.itacademy.lotys.web.shop.lotyshop.repositories.Repository;
+import by.itacademy.lotys.web.shop.lotyshop.repositories.company.ImplementCompanyRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ImplementCompanyServices implements CompanyServices {
+public class ImplementCompanyServices implements CompanyService {
 
-    private final InterfaceRepository<Company> companyRepository = new CompanyRepository();
-
+    private final Repository<Company> companyRepository = new ImplementCompanyRepository();
 
     @Override
     public Optional<Company> findById(Long id) {
@@ -18,22 +17,22 @@ public class ImplementCompanyServices implements CompanyServices {
     }
 
     @Override
-    public Optional<Company> updateCompany(Company company) {
+    public Optional<Company> update(Company company) {
         return companyRepository.update(company);
     }
 
     @Override
-    public void createCompany(Company company) {
+    public void create(Company company) {
         companyRepository.create(company);
     }
 
     @Override
-    public void deleteCompany(Long id) {
+    public void delete(Long id) {
         companyRepository.delete(id);
     }
 
     @Override
-    public List<Company> getAllCompanies() {
+    public List<Company> getAll() {
         return companyRepository.getAll();
     }
 }

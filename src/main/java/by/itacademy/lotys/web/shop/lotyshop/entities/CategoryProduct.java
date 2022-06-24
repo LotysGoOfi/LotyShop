@@ -1,10 +1,7 @@
 package by.itacademy.lotys.web.shop.lotyshop.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,9 +10,10 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Entity
 @ToString
 @AllArgsConstructor
-@Entity
+@NoArgsConstructor
 @Table(name = "product_categories")
 public class CategoryProduct {
 
@@ -27,7 +25,6 @@ public class CategoryProduct {
     @ToString.Exclude
     @ManyToMany(mappedBy = "categoryProducts")
     private Set<Product> products = new HashSet<>();
-    public CategoryProduct(){}
 
     @Override
     public boolean equals(Object obj) {

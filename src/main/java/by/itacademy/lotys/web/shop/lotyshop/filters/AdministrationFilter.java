@@ -30,12 +30,6 @@ public class AdministrationFilter extends HttpFilter {
         }
 
 
-//        if (user.getUserRole() == UserRole.ADMIN) {
-//            log.info(": admin");
-//            chain.doFilter(req, res);
-//        } else {
-//            log.info(": user");
-//            res.sendRedirect(req.getContextPath() + "/");
-//        }
+
     }
 }

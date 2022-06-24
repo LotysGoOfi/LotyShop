@@ -20,7 +20,7 @@ public class UsersAdministrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> AllUsers = userService.getAllUsers();
+        List<User> AllUsers = userService.getAll();
         req.setAttribute("users",AllUsers);
 
         req.getRequestDispatcher(Config.URL_ADMINISTRATION_USERS).forward(req,resp);
