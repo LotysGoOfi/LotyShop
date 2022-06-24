@@ -3,22 +3,25 @@ package by.itacademy.lotys.web.shop.lotyshop.services.companies;
 import by.itacademy.lotys.web.shop.lotyshop.entities.Company;
 import by.itacademy.lotys.web.shop.lotyshop.repositories.Repository;
 import by.itacademy.lotys.web.shop.lotyshop.repositories.company.ImplementCompanyRepository;
+import lombok.extern.java.Log;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class ImplementCompanyServices implements CompanyService {
+@Log
+public class ImplementCompanyService implements CompanyService {
 
     private final Repository<Company> companyRepository = new ImplementCompanyRepository();
 
     @Override
-    public Optional<Company> findById(Long id) {
-        return companyRepository.findById(id);
+    public Company findById(Long id) {
+        return companyRepository.findById(id).orElseThrow(() -> new NoSuchElementException("" + id));
     }
 
     @Override
-    public Optional<Company> update(Company company) {
-        return companyRepository.update(company);
+    public Company update(Company company) {
+        return companyRepository.update(company).orElseThrow(() -> new NoSuchElementException("" + company));
     }
 
     @Override
@@ -28,7 +31,11 @@ public class ImplementCompanyServices implements CompanyService {
 
     @Override
     public void delete(Long id) {
-        companyRepository.delete(id);
+        try {
+            companyRepository.delete(id);
+        } catch (NoSuchElementException noSuchElementException) {
+            log.info(noSuchElementException.getMessage());
+        }
     }
 
     @Override

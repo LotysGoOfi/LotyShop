@@ -19,7 +19,7 @@ import java.util.Objects;
 @WebServlet(urlPatterns = "/authorization")
 public class AuthorizationServlet extends HttpServlet {
 
-    
+
     private final UserService userService = new ImplementUserService();
 
 

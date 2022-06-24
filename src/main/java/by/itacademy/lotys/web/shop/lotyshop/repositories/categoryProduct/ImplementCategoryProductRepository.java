@@ -1,7 +1,7 @@
 package by.itacademy.lotys.web.shop.lotyshop.repositories.categoryProduct;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.CategoryProduct;
-import by.itacademy.lotys.web.shop.lotyshop.repositories.Repository;
+
 import by.itacademy.lotys.web.shop.lotyshop.util.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class ImplementCategoryProductRepository implements CategoryProductRepository{
+public class ImplementCategoryProductRepository implements CategoryProductRepository {
 
     private final EntityManager entityManager = JPAUtil.getEntityManager();
 
     @Override
     public Optional<CategoryProduct> findById(Long id) {
-        final CategoryProduct categoryProduct = entityManager.find(CategoryProduct.class,id);
+        final CategoryProduct categoryProduct = entityManager.find(CategoryProduct.class, id);
         return Optional.of(categoryProduct);
     }
 
@@ -28,7 +28,7 @@ public class ImplementCategoryProductRepository implements CategoryProductReposi
         entityManager.merge(categoryProduct);
 
         entityManager.getTransaction().commit();
-        return Optional.of(entityManager.find(CategoryProduct.class,categoryProduct.getId()));
+        return Optional.of(entityManager.find(CategoryProduct.class, categoryProduct.getId()));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ImplementCategoryProductRepository implements CategoryProductReposi
     public void delete(Long id) {
         entityManager.getTransaction().begin();
 
-        CategoryProduct categoryProduct = findById(id).orElseThrow(()-> new NoSuchElementException(""+id));
+        CategoryProduct categoryProduct = findById(id).orElseThrow(() -> new NoSuchElementException("" + id));
 
         entityManager.remove(categoryProduct);
 

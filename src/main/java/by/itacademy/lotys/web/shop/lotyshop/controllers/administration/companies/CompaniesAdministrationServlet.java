@@ -3,7 +3,7 @@ package by.itacademy.lotys.web.shop.lotyshop.controllers.administration.companie
 import by.itacademy.lotys.web.shop.lotyshop.entities.Company;
 import by.itacademy.lotys.web.shop.lotyshop.properties.Config;
 import by.itacademy.lotys.web.shop.lotyshop.services.companies.CompanyService;
-import by.itacademy.lotys.web.shop.lotyshop.services.companies.ImplementCompanyServices;
+import by.itacademy.lotys.web.shop.lotyshop.services.companies.ImplementCompanyService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +16,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/administration/companies")
 public class CompaniesAdministrationServlet extends HttpServlet {
 
-    private final CompanyService companyServices = new ImplementCompanyServices();
+    private final CompanyService companyServices = new ImplementCompanyService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
