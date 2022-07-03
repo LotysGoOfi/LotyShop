@@ -5,9 +5,9 @@ import by.itacademy.lotys.web.shop.lotyshop.dtos.categoryProduct.CategoryProduct
 import by.itacademy.lotys.web.shop.lotyshop.services.categoryProduct.CategoryProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.validation.Valid;
 import java.util.List;
