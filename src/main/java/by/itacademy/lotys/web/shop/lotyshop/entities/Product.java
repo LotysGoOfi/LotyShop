@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,8 +20,8 @@ import java.util.Set;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @ToString.Exclude
     @ManyToOne(targetEntity = Company.class)
@@ -29,7 +30,7 @@ public class Product {
 
     private BigDecimal price;
     private String name;
-    private int value;
+    private int amount;
     private String description;
 
     @Column(name = "url_image")

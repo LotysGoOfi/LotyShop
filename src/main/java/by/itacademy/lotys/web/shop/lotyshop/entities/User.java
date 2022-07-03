@@ -4,21 +4,24 @@ import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Objects;
+import java.util.UUID;
+
 
 @Getter
 @Setter
 @ToString
-@Entity
 @Builder
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "user_role")
@@ -28,7 +31,7 @@ public class User {
     private String email;
 
     @Column(name = "nick_name")
-    private String nickName;
+    private String login;
 
     private String password;
 
