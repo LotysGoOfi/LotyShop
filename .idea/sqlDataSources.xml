@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="ef65d263-3cb6-46e9-bf69-1eafa3da6489" name="data_base_lotyShop@localhost Mapping">
+      <data-sources db="8e7ae15d-64c4-4073-90c3-9c730358f758" ddl="bf24a9eb-3c5d-4862-9ab1-ca6ab2227c78" />
+      <scope>
+        <node negative="1">
+          <node kind="database" qname="@">
+            <node kind="schema" qname="@" />
+          </node>
+          <node kind="database" qname="data_base_lotyShop">
+            <node kind="schema" qname="public" />
+          </node>
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>

@@ -1,8 +1,10 @@
 package by.itacademy.lotys.web.shop.lotyshop.services.categoryProduct;
 
-import by.itacademy.lotys.web.shop.lotyshop.entities.CategoryProduct;
-import by.itacademy.lotys.web.shop.lotyshop.services.Service;
+import by.itacademy.lotys.web.shop.lotyshop.dtos.categoryProduct.CategoryProductRequest;
+import by.itacademy.lotys.web.shop.lotyshop.dtos.categoryProduct.CategoryProductResponse;
+import by.itacademy.lotys.web.shop.lotyshop.services.ServiceEntity;
 
-public interface CategoryProductService extends Service<CategoryProduct> {
+import java.util.UUID;
 
+public interface CategoryProductService extends ServiceEntity<CategoryProductRequest,CategoryProductResponse, UUID> {
 }

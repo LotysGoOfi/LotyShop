@@ -1,7 +1,11 @@
 package by.itacademy.lotys.web.shop.lotyshop.repositories.categoryProduct;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.CategoryProduct;
-import by.itacademy.lotys.web.shop.lotyshop.repositories.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CategoryProductRepository extends Repository<CategoryProduct> {
+import java.util.UUID;
+
+@Repository
+public interface CategoryProductRepository extends JpaRepository<CategoryProduct, UUID> {
 }
