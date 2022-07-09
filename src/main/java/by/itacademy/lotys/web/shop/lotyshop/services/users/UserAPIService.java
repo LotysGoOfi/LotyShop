@@ -41,7 +41,7 @@ public class UserAPIService implements UserService {
         User user = getUser(id);
         user.setEmail(userRequest.getEmail());
         user.setLogin(userRequest.getLogin());
-        user.setPassword(user.getPassword());
+        user.setPassword(userRequest.getPassword());
         return userTransformers.getResponse(
                 userRepository.save(user));
     }
