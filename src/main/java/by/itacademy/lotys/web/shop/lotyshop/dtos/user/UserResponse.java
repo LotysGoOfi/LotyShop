@@ -29,7 +29,4 @@ public class UserResponse {
     @NotBlank
     private String login;
 
-    @NotBlank
-    private String password;
-
 }

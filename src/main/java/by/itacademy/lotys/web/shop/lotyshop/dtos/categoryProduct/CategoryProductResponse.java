@@ -16,6 +16,7 @@ public class CategoryProductResponse {
 
     @NotBlank
     private UUID id;
+
     @NotBlank
     private String name;
 

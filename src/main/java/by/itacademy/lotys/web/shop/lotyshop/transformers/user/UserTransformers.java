@@ -30,7 +30,7 @@ public class UserTransformers implements Transformers<UserRequest,UserResponse,U
                 .userRole(user.getUserRole())
                 .login(user.getLogin())
                 .email(user.getEmail())
-                .password(user.getPassword()).build();
+                .build();
     }
 
     @Override
