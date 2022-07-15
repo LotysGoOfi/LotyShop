@@ -1,18 +1,17 @@
 package by.itacademy.lotys.web.shop.lotyshop.services.users;
 
 
-import by.itacademy.lotys.web.shop.lotyshop.dtos.user.UserRequest;
-import by.itacademy.lotys.web.shop.lotyshop.dtos.user.UserResponse;
+import by.itacademy.lotys.web.shop.lotyshop.dtos.users.UserRequest;
+import by.itacademy.lotys.web.shop.lotyshop.dtos.users.UserResponse;
 import by.itacademy.lotys.web.shop.lotyshop.entities.User;
 import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
-import by.itacademy.lotys.web.shop.lotyshop.repositories.user.UserRepository;
-import by.itacademy.lotys.web.shop.lotyshop.transformers.user.UserTransformers;
+import by.itacademy.lotys.web.shop.lotyshop.repositories.users.UserRepository;
+import by.itacademy.lotys.web.shop.lotyshop.transformers.users.UserTransformers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;

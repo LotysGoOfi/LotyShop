@@ -1,4 +1,4 @@
-package by.itacademy.lotys.web.shop.lotyshop.repositories.categoryProduct;
+package by.itacademy.lotys.web.shop.lotyshop.repositories.categoryProducts;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.CategoryProduct;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,8 +1,8 @@
-package by.itacademy.lotys.web.shop.lotyshop.transformers.user;
+package by.itacademy.lotys.web.shop.lotyshop.transformers.users;
 
-import by.itacademy.lotys.web.shop.lotyshop.dtos.user.UserRequest;
+import by.itacademy.lotys.web.shop.lotyshop.dtos.users.UserRequest;
 
-import by.itacademy.lotys.web.shop.lotyshop.dtos.user.UserResponse;
+import by.itacademy.lotys.web.shop.lotyshop.dtos.users.UserResponse;
 import by.itacademy.lotys.web.shop.lotyshop.entities.User;
 import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
 import by.itacademy.lotys.web.shop.lotyshop.transformers.Transformers;

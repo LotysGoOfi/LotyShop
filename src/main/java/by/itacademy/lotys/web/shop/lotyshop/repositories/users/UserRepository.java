@@ -1,4 +1,4 @@
-package by.itacademy.lotys.web.shop.lotyshop.repositories.user;
+package by.itacademy.lotys.web.shop.lotyshop.repositories.users;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.User;
 import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
