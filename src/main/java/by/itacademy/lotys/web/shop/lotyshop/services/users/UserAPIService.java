@@ -8,7 +8,6 @@ import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
 import by.itacademy.lotys.web.shop.lotyshop.repositories.users.UserRepository;
 import by.itacademy.lotys.web.shop.lotyshop.transformers.users.UserTransformers;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserAPIService implements UserService {
@@ -32,7 +30,7 @@ public class UserAPIService implements UserService {
     @Override
     public UserResponse getUserByEmail(String email) {
         return userTransformers.getResponse(
-                userRepository.getUsersByEmail(email));
+                userRepository.getUserByEmail(email));
     }
 
     @Override
@@ -72,7 +70,7 @@ public class UserAPIService implements UserService {
     @Override
     public List<UserResponse> getUsersBuRole(UserRole userRole) {
         return userTransformers.
-                getResponses(userRepository.getUsersBy(userRole));
+                getResponses(userRepository.getUsersByRole(userRole));
     }
 
     private User getUser(UUID id) {

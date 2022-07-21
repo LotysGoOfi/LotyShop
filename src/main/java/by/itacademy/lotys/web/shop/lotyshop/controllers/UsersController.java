@@ -52,13 +52,13 @@ public class UsersController{
         return userService.update(request, id);
     }
 
-    @GetMapping("create")
+    @PostMapping("create")
     @ResponseStatus(value = HttpStatus.OK)
     public UserResponse create(@Valid @RequestBody UserRequest request) {
         return userService.create(request);
     }
 
-    @GetMapping("delete/{id}")
+    @DeleteMapping ("delete/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public UserResponse delete(@PathVariable UUID id) {
         return userService.delete(id);

@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 12324124900
+      author: LotysGo
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: company_id
+                  type: uuid
+              - column:
+                  name: city_id
+                  type: uuid
+            tableName: company_and_city
+        - addPrimaryKey:
+            columnNames: company_id, city_id
+            tableName: company_and_city

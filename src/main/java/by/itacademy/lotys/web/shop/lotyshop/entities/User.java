@@ -2,9 +2,9 @@ package by.itacademy.lotys.web.shop.lotyshop.entities;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
 import lombok.*;
+import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -13,10 +13,9 @@ import java.util.UUID;
 @Setter
 @ToString
 @Builder
-@Entity
+@Entity(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
 public class User {
 
     @Id
@@ -24,17 +23,13 @@ public class User {
     private UUID id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_role")
-    private UserRole userRole;
+    private UserRole role;
 
-    @Column(unique = true)
     private String email;
 
-    @Column(name = "nick_name")
     private String login;
 
     private String password;
-
 
 
     @Override

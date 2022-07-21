@@ -10,7 +10,7 @@ import javax.persistence.EntityNotFoundException;
 @RestControllerAdvice
 public class ControllerExceptionsHandler {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(EntityNotFoundException.class)
     public String handlerNotFoundException(EntityNotFoundException exception){
         return exception.getMessage();

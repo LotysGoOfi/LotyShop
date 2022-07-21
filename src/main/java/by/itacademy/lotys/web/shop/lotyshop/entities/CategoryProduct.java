@@ -4,7 +4,6 @@ package by.itacademy.lotys.web.shop.lotyshop.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -15,7 +14,6 @@ import java.util.UUID;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "product_categories")
 public class CategoryProduct {
 
     @Id
@@ -26,7 +24,13 @@ public class CategoryProduct {
 
     @ToString.Exclude
     @ManyToMany(mappedBy = "categoryProducts")
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> products;
+
+    @PreRemove
+    private void preRemove(){
+        products.forEach(product->product.getCategoryProducts().remove(this));
+        products.clear();
+    }
 
     @Override
     public boolean equals(Object obj) {

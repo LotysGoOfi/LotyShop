@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 12324128
+      author: LotysGo
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: user_pkey
+                  name: id
+                  type: uuid
+                  autoIncrement: true
+                  defaultValueComputed: gen_random_uuid()
+              - column:
+                  name: role
+                  type: VARCHAR(32)
+              - column:
+                  name: email
+                  type: VARCHAR(32)
+              - column:
+                  name: login
+                  type: VARCHAR(32)
+              - column:
+                  name: password
+                  type: VARCHAR(100)
+            tableName: users

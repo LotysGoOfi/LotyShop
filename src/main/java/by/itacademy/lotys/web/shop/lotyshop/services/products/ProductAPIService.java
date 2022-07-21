@@ -1,11 +1,17 @@
 package by.itacademy.lotys.web.shop.lotyshop.services.products;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.Product;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+
+@Service
+@RequiredArgsConstructor
 public class ProductAPIService implements ProductService{
+
     @Override
     public Product getByID(UUID uuid) {
         return null;

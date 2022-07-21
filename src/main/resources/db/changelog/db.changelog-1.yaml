@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id: 12324127
+      author: LotysGo
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: product_pkey
+                  name: id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+              - column:
+                  name: company_id
+                  type: uuid
+              - column:
+                  name: price
+                  type: NUMERIC
+              - column:
+                  name: name
+                  type: VARCHAR(32)
+              - column:
+                  name: amount
+                  type: INTEGER
+              - column:
+                  name: description
+                  type: VARCHAR(32)
+              - column:
+                  name: url_image
+                  type: VARCHAR(32)
+            tableName: product
+  - changeSet:
+      id: 12324125
+      author: LotysGo
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: category_product_pkey
+                  name: id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  type: VARCHAR(32)
+            tableName: category_product
+  - changeSet:
+      id: 12324124999
+      author: LotysGo
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: product_id
+                  type: uuid
+              - column:
+                  name: product_category_id
+                  type: uuid
+            tableName: product_and_product_category
+        - addPrimaryKey:
+            columnNames: product_id, product_category_id
+            tableName: product_and_product_category

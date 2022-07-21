@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 12324124
+      author: LotysGo
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: company_pkey
+                  name: id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  type: VARCHAR(32)
+              - column:
+                  name: url_logo
+                  type: VARCHAR(32)
+            tableName: company

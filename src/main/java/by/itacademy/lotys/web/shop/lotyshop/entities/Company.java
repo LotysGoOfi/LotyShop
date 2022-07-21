@@ -17,7 +17,6 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "companies")
 public class Company {
 
     @Id
@@ -26,9 +25,7 @@ public class Company {
 
     private String name;
 
-    @Column(name = "url_Logo")
     private String urlLogo;
-
 
     @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -38,12 +35,16 @@ public class Company {
 
     @ToString.Exclude
     @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "cities_companies",
+    @JoinTable(name = "company_and_city",
             joinColumns = @JoinColumn(name = "company_id"),
             inverseJoinColumns = @JoinColumn(name = "city_id"))
     private Set<City> cities = new HashSet<>();
 
-
+    @PreRemove
+    private void preRemove(){
+        cities.forEach(city->city.getCompanies().remove(this));
+        cities.clear();
+    }
 
     @Override
     public int hashCode() {

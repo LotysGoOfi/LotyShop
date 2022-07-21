@@ -25,24 +25,30 @@ public class Product {
 
     @ToString.Exclude
     @ManyToOne(targetEntity = Company.class)
-    @JoinColumn(name = "company_id")
     private Company company;
 
     private BigDecimal price;
+
     private String name;
+
     private int amount;
+
     private String description;
 
-    @Column(name = "url_image")
     private String urlImage;
 
     @ToString.Exclude
     @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "products_category_products",
+    @JoinTable(name = "product_and_product_category",
             joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
+            inverseJoinColumns = @JoinColumn(name = "product_category_id"))
     private Set<CategoryProduct> categoryProducts = new HashSet<>();
 
+    @PreRemove
+    private void preRemove(){
+        categoryProducts.forEach(categoryProduct->categoryProduct.getProducts().remove(this));
+        categoryProducts.clear();
+    }
 
     @Override
     public boolean equals(Object obj) {

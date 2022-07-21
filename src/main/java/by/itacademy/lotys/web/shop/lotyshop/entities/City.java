@@ -16,18 +16,23 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "cities")
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
     private String name;
 
     @ToString.Exclude
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "cities")
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "cities")
     private Set<Company> companies = new HashSet<>();
 
+    @PreRemove
+    private void preRemove(){
+        companies.forEach(company->company.getCities().remove(this));
+        companies.clear();
+    }
 
     @Override
     public boolean equals(Object obj) {
