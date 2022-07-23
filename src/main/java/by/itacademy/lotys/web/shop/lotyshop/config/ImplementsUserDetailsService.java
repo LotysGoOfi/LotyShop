@@ -3,7 +3,7 @@ package by.itacademy.lotys.web.shop.lotyshop.config;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
 import by.itacademy.lotys.web.shop.lotyshop.repositories.users.UserRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,15 +13,15 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@AllArgsConstructor
-public class UsersDetailsService implements UserDetailsService {
+@RequiredArgsConstructor
+public class ImplementsUserDetailsService implements UserDetailsService {
 
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         by.itacademy.lotys.web.shop.lotyshop.entities.User user = userRepository.getUserByEmail(email);
+
 
         if(user == null){
             throw new UsernameNotFoundException("");
@@ -30,7 +30,6 @@ public class UsersDetailsService implements UserDetailsService {
         return User.builder()
                 .username(user.getEmail())
                 .password(user.getPassword())
-                .passwordEncoder(passwordEncoder::encode)
                 .accountExpired(false)
                 .accountLocked(false)
                 .authorities(UserRole.USER.name())

@@ -23,10 +23,11 @@ public class CategoryProductAPIService implements CategoryProductService {
 
     @Override
     @Transactional
-    public CategoryProduct update(CategoryProduct request, UUID id) {
-        CategoryProduct categoryProduct = getCategoryProduct(id);
-        categoryProduct.setName(request.getName());
-        return categoryProductRepository.save(categoryProduct);
+    public CategoryProduct update(CategoryProduct request) {
+        if(categoryProductRepository.existsById(request.getId())){
+            categoryProductRepository.save(request);
+        }
+        return request;
     }
 
     @Override

@@ -2,7 +2,6 @@ package by.itacademy.lotys.web.shop.lotyshop.entities;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
 import lombok.*;
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -27,7 +26,7 @@ public class User {
 
     private String email;
 
-    private String login;
+    private String name;
 
     private String password;
 

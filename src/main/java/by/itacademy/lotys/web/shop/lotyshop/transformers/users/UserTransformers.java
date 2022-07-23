@@ -7,7 +7,6 @@ import by.itacademy.lotys.web.shop.lotyshop.entities.User;
 import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
 import by.itacademy.lotys.web.shop.lotyshop.transformers.Transformers;
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,15 +17,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserTransformers implements Transformers<UserRequest,UserResponse,User> {
 
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public User getEntity(UserRequest userRequest){
         return User.builder()
                 .email(userRequest.getEmail())
-                .login(userRequest.getLogin())
+                .name(userRequest.getName())
                 .role(UserRole.USER)
-                .password(passwordEncoder.encode(userRequest.getPassword())).build();
+                .password(userRequest.getPassword()).build();
     }
 
     @Override
@@ -34,7 +31,7 @@ public class UserTransformers implements Transformers<UserRequest,UserResponse,U
         return UserResponse.builder()
                 .id(user.getId())
                 .userRole(user.getRole())
-                .login(user.getLogin())
+                .name(user.getName())
                 .email(user.getEmail())
                 .build();
     }

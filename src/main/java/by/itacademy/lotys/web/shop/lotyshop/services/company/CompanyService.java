@@ -5,5 +5,5 @@ import by.itacademy.lotys.web.shop.lotyshop.services.ServiceEntity;
 
 import java.util.UUID;
 
-public interface CompanyService extends ServiceEntity<Company,Company, UUID> {
+public interface CompanyService extends ServiceEntity<Company, UUID> {
 }

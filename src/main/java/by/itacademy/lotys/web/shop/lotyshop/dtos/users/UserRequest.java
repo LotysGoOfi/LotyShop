@@ -19,7 +19,7 @@ public class UserRequest {
     private String email;
 
     @NotBlank
-    private String login;
+    private String name;
 
     @NotBlank
     private String password;

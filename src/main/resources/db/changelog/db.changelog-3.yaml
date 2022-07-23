@@ -11,7 +11,6 @@ databaseChangeLog:
                     primaryKeyName: company_pkey
                   name: id
                   type: uuid
-                  defaultValueComputed: gen_random_uuid()
               - column:
                   name: name
                   type: VARCHAR(32)

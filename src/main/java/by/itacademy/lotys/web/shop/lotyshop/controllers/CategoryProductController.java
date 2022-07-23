@@ -35,7 +35,7 @@ public class CategoryProductController{
     @GetMapping("update/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public CategoryProduct update(@Valid @RequestBody CategoryProduct request, @PathVariable UUID id) {
-        return categoryProductService.update(request,id);
+        return categoryProductService.update(request);
     }
 
     @GetMapping("create")

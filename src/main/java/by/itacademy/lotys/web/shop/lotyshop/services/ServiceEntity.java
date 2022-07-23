@@ -3,16 +3,16 @@ package by.itacademy.lotys.web.shop.lotyshop.services;
 import java.util.List;
 
 
-public interface ServiceEntity<RequestT,ResponseT,ID> {
+public interface ServiceEntity<Entity,ID> {
 
-    ResponseT getByID(ID id);
+    Entity getByID(ID id);
 
-    ResponseT update(RequestT request,ID id);
+    Entity update(Entity request);
 
-    ResponseT delete(ID id);
+    Entity delete(ID id);
 
-    ResponseT create(RequestT request);
+    Entity create(Entity request);
 
-    List<ResponseT> getAll();
+    List<Entity> getAll();
 
 }
