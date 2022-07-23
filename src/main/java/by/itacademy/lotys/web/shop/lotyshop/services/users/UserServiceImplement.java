@@ -4,6 +4,7 @@ package by.itacademy.lotys.web.shop.lotyshop.services.users;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.User;
 import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
+import by.itacademy.lotys.web.shop.lotyshop.exceptions.EmailExistsException;
 import by.itacademy.lotys.web.shop.lotyshop.repositories.users.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -27,21 +28,21 @@ public class UserServiceImplement implements UserService {
     @Override
     public User getByID(UUID id) {
         return userRepository.findById(id).
-                orElseThrow(() -> new NoSuchElementException("no user by " + id));
+                orElseThrow(() -> new NoSuchElementException("no user by id :" + id));
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return userRepository.getUserByEmail(email);
+        return userRepository.findUserByEmail(email);
     }
 
     @Override
     @Transactional
     public User update(User userRequest) {
-        if(userRepository.existsById(userRequest.getId())) {
-           userRepository.save(userRequest);
+        if(!userRepository.existsById(userRequest.getId())) {
+           throw new NoSuchElementException("no user by email :" + userRequest.getEmail());
         }
-        return userRequest;
+        return userRepository.save(userRequest);
     }
 
     @Override
@@ -56,6 +57,9 @@ public class UserServiceImplement implements UserService {
     @Override
     @Transactional
     public User create(User requestUser) {
+        if(userRepository.findUserByEmail(requestUser.getEmail())!=null){
+            throw new EmailExistsException("");
+        }
         requestUser.setPassword(passwordEncoder.encode(requestUser.getPassword()));
         return userRepository.save(requestUser);
     }

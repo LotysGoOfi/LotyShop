@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class CompanyAPIService implements CompanyService{
+public class CompanyServiceImplement implements CompanyService{
 
     private final CompanyRepository companyRepository;
 

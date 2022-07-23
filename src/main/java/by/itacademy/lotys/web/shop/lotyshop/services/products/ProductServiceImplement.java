@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class ImplementProductService implements ProductService{
+public class ProductServiceImplement implements ProductService{
 
     private final ProductRepository productRepository;
 

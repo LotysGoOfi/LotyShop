@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
@@ -20,7 +19,7 @@ public class ImplementsUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        by.itacademy.lotys.web.shop.lotyshop.entities.User user = userRepository.getUserByEmail(email);
+        by.itacademy.lotys.web.shop.lotyshop.entities.User user = userRepository.findUserByEmail(email);
 
 
         if(user == null){

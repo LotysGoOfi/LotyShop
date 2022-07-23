@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class CategoryProductAPIService implements CategoryProductService {
+public class CategoryProductServiceImplement implements CategoryProductService {
 
     private final CategoryProductRepository categoryProductRepository;
 

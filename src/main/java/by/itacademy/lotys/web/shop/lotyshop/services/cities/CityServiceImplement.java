@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class CityAPIService implements CityService {
+public class CityServiceImplement implements CityService {
 
     private final CityRepository cityRepository;
 
