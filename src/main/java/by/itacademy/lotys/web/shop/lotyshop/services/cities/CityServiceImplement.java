@@ -16,7 +16,7 @@ public class CityServiceImplement implements CityService {
     private final CityRepository cityRepository;
 
     @Override
-    public City getByID(UUID uuid) {
+    public City findById(UUID uuid) {
         return cityRepository.getReferenceById(uuid);
     }
 
@@ -32,7 +32,7 @@ public class CityServiceImplement implements CityService {
     @Override
     @Transactional
     public City delete(UUID uuid) {
-        City byID = getByID(uuid);
+        City byID = findById(uuid);
         cityRepository.delete(byID);
         return byID;
     }

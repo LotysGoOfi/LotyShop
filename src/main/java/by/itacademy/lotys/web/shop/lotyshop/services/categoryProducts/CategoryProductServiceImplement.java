@@ -17,7 +17,7 @@ public class CategoryProductServiceImplement implements CategoryProductService {
     private final CategoryProductRepository categoryProductRepository;
 
     @Override
-    public CategoryProduct getByID(UUID id) {
+    public CategoryProduct findById(UUID id) {
         return getCategoryProduct(id);
     }
 

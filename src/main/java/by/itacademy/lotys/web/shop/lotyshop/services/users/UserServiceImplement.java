@@ -4,7 +4,6 @@ package by.itacademy.lotys.web.shop.lotyshop.services.users;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.User;
 import by.itacademy.lotys.web.shop.lotyshop.entities.enums.UserRole;
-import by.itacademy.lotys.web.shop.lotyshop.exceptions.EmailExistsException;
 import by.itacademy.lotys.web.shop.lotyshop.repositories.users.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,15 +24,15 @@ public class UserServiceImplement implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Override
-    public User getByID(UUID id) {
-        return userRepository.findById(id).
-                orElseThrow(() -> new NoSuchElementException("no user by id :" + id));
+    public User findById(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("no user by id :" + id));
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+    public User findByEmail(String email) {
+        return userRepository.findUserByEmail(email)
+                .orElseThrow(()->new NoSuchElementException("no user by email :" + email));
     }
 
     @Override
@@ -48,18 +47,14 @@ public class UserServiceImplement implements UserService {
     @Override
     @Transactional
     public User delete(UUID id) {
-        User user = getByID(id);
+        User user = findById(id);
         userRepository.delete(user);
         return user;
     }
 
-
     @Override
     @Transactional
     public User create(User requestUser) {
-        if(userRepository.findUserByEmail(requestUser.getEmail())!=null){
-            throw new EmailExistsException("");
-        }
         requestUser.setPassword(passwordEncoder.encode(requestUser.getPassword()));
         return userRepository.save(requestUser);
     }
@@ -70,12 +65,12 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public Page<User> getAll(Pageable pageable) {
+    public Page<User> findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
 
     @Override
-    public List<User> getUsersBuRole(UserRole userRole, Pageable pageable) {
+    public List<User> findByRole(UserRole userRole, Pageable pageable) {
         Page<User> all = userRepository.findAll(pageable);
         return all.stream()
                 .filter(user -> user.getRole() == userRole)

@@ -19,12 +19,8 @@ public class ImplementsUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        by.itacademy.lotys.web.shop.lotyshop.entities.User user = userRepository.findUserByEmail(email);
-
-
-        if(user == null){
-            throw new UsernameNotFoundException("");
-        }
+        by.itacademy.lotys.web.shop.lotyshop.entities.User user = userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(""));
 
         return User.builder()
                 .username(user.getEmail())
@@ -36,5 +32,4 @@ public class ImplementsUserDetailsService implements UserDetailsService {
                 .disabled(false)
                 .build();
     }
-
 }

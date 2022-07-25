@@ -12,7 +12,7 @@ import java.util.UUID;
 
 
 public interface UserService extends ServiceEntity<User,UUID> {
-    User getUserByEmail(String email);
-    Page<User> getAll(Pageable pageable);
-    List<User> getUsersBuRole(UserRole userRole, Pageable pageable);
+    User findByEmail(String email);
+    Page<User> findAll(Pageable pageable);
+    List<User> findByRole(UserRole userRole, Pageable pageable);
 }

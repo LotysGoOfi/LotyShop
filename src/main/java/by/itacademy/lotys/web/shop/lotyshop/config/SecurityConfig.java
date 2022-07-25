@@ -18,25 +18,25 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public SecurityFilterChain userFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable();
-        httpSecurity.cors().disable();
-        httpSecurity.authorizeRequests()
-                .antMatchers("/admin").hasRole(UserRole.ADMIN.name())
-                .antMatchers("/users/").hasRole(UserRole.USER.name())
-                .antMatchers("/","/users/create","/login").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+//        httpSecurity.csrf().disable();
+//        httpSecurity.cors().disable();
+//        httpSecurity.authorizeRequests()
+//                             .antMatchers("/admin").hasRole(UserRole.ADMIN.name())
+//                      .antMatchers("/users/**").hasRole(UserRole.USER.name())
+//                     .antMatchers("/", "/users/create", "/login").permitAll()
+//                .anyRequest().authenticated()
+//               .and()
+//               .formLogin()
+//               .permitAll()
+//               .and()
+//               .logout()
+//                .permitAll();
         return httpSecurity.build();
     }
 

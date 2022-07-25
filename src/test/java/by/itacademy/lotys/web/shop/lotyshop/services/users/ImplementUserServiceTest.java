@@ -2,7 +2,6 @@ package by.itacademy.lotys.web.shop.lotyshop.services.users;
 
 import by.itacademy.lotys.web.shop.lotyshop.entities.User;
 import by.itacademy.lotys.web.shop.lotyshop.repositories.users.UserRepository;
-import liquibase.pro.packaged.U;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -33,7 +32,7 @@ class ImplementUserServiceTest {
         UUID id = UUID.randomUUID();
         User user = User.builder().name("test").build();
         given(userRepository.findById(id)).willReturn(Optional.of(user));
-        User userByID = userService.getByID(id);
+        User userByID = userService.findById(id);
         assertEquals(user,userByID);
     }
 
@@ -41,8 +40,8 @@ class ImplementUserServiceTest {
     void getUserByEmail() {
         String email =  "email.test";
         User user = User.builder().email(email).build();
-        given(userRepository.findUserByEmail(email)).willReturn(user);
-        User userByEmail = userService.getUserByEmail(email);
+        given(userRepository.findUserByEmail(email)).willReturn(Optional.of(user));
+        User userByEmail = userService.findByEmail(email);
         assertEquals(user,userByEmail);
     }
 

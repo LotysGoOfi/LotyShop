@@ -16,7 +16,7 @@ public class CompanyServiceImplement implements CompanyService{
     private final CompanyRepository companyRepository;
 
     @Override
-    public Company getByID(UUID uuid) {
+    public Company findById(UUID uuid) {
         return companyRepository.getReferenceById(uuid);
     }
 
@@ -32,7 +32,7 @@ public class CompanyServiceImplement implements CompanyService{
     @Override
     @Transactional
     public Company delete(UUID uuid) {
-        Company byID = getByID(uuid);
+        Company byID = findById(uuid);
         companyRepository.delete(byID);
         return byID;
     }

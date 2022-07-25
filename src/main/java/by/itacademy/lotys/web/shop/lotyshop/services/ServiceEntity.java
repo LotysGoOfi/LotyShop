@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ServiceEntity<Entity,ID> {
 
-    Entity getByID(ID id);
+    Entity findById(ID id);
 
     Entity update(Entity request);
 

@@ -20,31 +20,32 @@ public class CategoryProductController{
 
     private final CategoryProductService categoryProductService;
 
-    @GetMapping("id/{id}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public CategoryProduct get(@PathVariable UUID id) {
-        return categoryProductService.getByID(id);
-    }
-
-    @GetMapping("all")
+    @GetMapping("")
     @ResponseStatus(value = HttpStatus.OK)
     public List<CategoryProduct> getAll() {
         return categoryProductService.getAll();
     }
 
-    @GetMapping("update/{id}")
+    @GetMapping("id={id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public CategoryProduct get(@PathVariable UUID id) {
+        return categoryProductService.findById(id);
+    }
+
+
+    @PutMapping("id={id}")
     @ResponseStatus(value = HttpStatus.OK)
     public CategoryProduct update(@Valid @RequestBody CategoryProduct request, @PathVariable UUID id) {
         return categoryProductService.update(request);
     }
 
-    @GetMapping("create")
+    @PostMapping("create")
     @ResponseStatus(value = HttpStatus.OK)
     public CategoryProduct create(@RequestBody CategoryProduct request) {
         return categoryProductService.create(request);
     }
 
-    @GetMapping("delete/{id}")
+    @DeleteMapping ("id={id}")
     @ResponseStatus(value = HttpStatus.OK)
     public CategoryProduct delete(@PathVariable UUID id) {
         return categoryProductService.delete(id);

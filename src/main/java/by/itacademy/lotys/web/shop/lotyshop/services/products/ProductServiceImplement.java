@@ -18,7 +18,7 @@ public class ProductServiceImplement implements ProductService{
     private final ProductRepository productRepository;
 
     @Override
-    public Product getByID(UUID uuid) {
+    public Product findById(UUID uuid) {
         return getProduct(uuid);
     }
 

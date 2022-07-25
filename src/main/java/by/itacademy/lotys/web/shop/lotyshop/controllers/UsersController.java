@@ -23,54 +23,61 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
-public class UsersController{
+public class UsersController {
 
     private final UserService userService;
     private final UserTransformers userTransformers;
 
-    @GetMapping("id/{id}")
+    @GetMapping("/")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<UserResponse> getAll(@SortDefault(sort = "name", direction = Sort.Direction.ASC)
+                                             Pageable pageable) {
+        return userTransformers.getResponses(
+                userService.findAll(pageable).getContent());
+    }
+
+    @GetMapping("id={id}")
     @ResponseStatus(value = HttpStatus.OK)
     public UserResponse get(@PathVariable UUID id) {
-        return userTransformers.getResponse(userService.getByID(id));
+        return userTransformers.getResponse(userService.findById(id));
     }
 
-    @GetMapping("email/{email}")
+    @GetMapping("email={email}")
     @ResponseStatus(value = HttpStatus.OK)
     public UserResponse getUser(@PathVariable String email) {
-        return userTransformers.getResponse(userService.getUserByEmail(email));
+        return userTransformers.getResponse(
+                userService.findByEmail(email));
     }
 
-    @GetMapping("all")
+    @GetMapping("user_role={userRole}")
     @ResponseStatus(value = HttpStatus.OK)
-    public List<UserResponse> getAll(@SortDefault(sort = "name", direction = Sort.Direction.ASC) Pageable pageable) {
+    public List<UserResponse> getUser(@PathVariable UserRole userRole,
+                                      @SortDefault(sort = "name",
+                                              direction = Sort.Direction.ASC)
+                                              Pageable pageable) {
         return userTransformers.getResponses(
-                userService.getAll(pageable).getContent());
+                userService.findByRole(userRole, pageable));
     }
 
-    @GetMapping("all/{userRole}")
+    @PutMapping("id={id}")
     @ResponseStatus(value = HttpStatus.OK)
-    public List<UserResponse> getAllUser(
-            @SortDefault(sort = "name", direction = Sort.Direction.ASC) Pageable pageable,
-            @PathVariable UserRole userRole) {
-        return userTransformers.getResponses(userService.getUsersBuRole(userRole,pageable));
-    }
-
-    @PutMapping("update/{id}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public UserResponse update(@Valid @RequestBody UserRequest request, @PathVariable UUID id) {
+    public UserResponse update(@Valid @RequestBody UserRequest request,
+                               @PathVariable UUID id) {
         User entity = userTransformers.getEntity(request);
         entity.setId(id);
-        return userTransformers.getResponse(userService.update(entity));
+        return userTransformers.getResponse(
+                userService.update(entity));
     }
 
     @PostMapping("create")
     @ResponseStatus(value = HttpStatus.OK)
     public UserResponse create(@Valid @RequestBody UserRequest request) {
         User entity = userTransformers.getEntity(request);
-        return userTransformers.getResponse(userService.create(entity));
+        return userTransformers.getResponse(
+                userService.create(entity));
     }
 
-    @DeleteMapping ("delete/{id}")
+    @DeleteMapping("id={id}")
     @ResponseStatus(value = HttpStatus.OK)
     public UserResponse delete(@PathVariable UUID id) {
         return userTransformers.getResponse(userService.delete(id));
